@@ -1,0 +1,66 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine(DateTime.Now);
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        var modules = new Dictionary<int, TimeSpan>
+        {
+            {1, TimeSpan.Parse("00:08:08")},
+            {2, TimeSpan.Parse("00:05:54")},
+            {3, TimeSpan.Parse("00:17:12")},
+            {4, TimeSpan.Parse("00:16:40")},
+            {5, TimeSpan.Parse("00:28:13")},
+            {6, TimeSpan.Parse("00:23:42")},
+            {7, TimeSpan.Parse("00:18:37")},
+            {8, TimeSpan.Parse("00:17:49")},
+            {9, TimeSpan.Parse("00:31:16")},
+            {10, TimeSpan.Parse("00:18:12")},
+            {11, TimeSpan.Parse("00:23:39")},
+            {12, TimeSpan.Parse("00:10:35")},
+            {13, TimeSpan.Parse("00:24:04")},
+            {14, TimeSpan.Parse("00:34:37")},
+            {15, TimeSpan.Parse("00:16:54")},
+            {16, TimeSpan.Parse("00:20:32")},
+            {17, TimeSpan.Parse("00:23:31")},
+            {18, TimeSpan.Parse("00:13:18")},
+            {19, TimeSpan.Parse("00:24:34")},
+            {20, TimeSpan.Parse("00:21:06")},
+            {21, TimeSpan.Parse("00:21:13")},
+            {22, TimeSpan.Parse("00:32:45")},
+            {23, TimeSpan.Parse("00:15:22")},
+            {24, TimeSpan.Parse("00:11:35")},
+            {25, TimeSpan.Parse("00:17:52")}
+        };
+
+        Console.Write("Vilken modul är du på nu? ");
+        int currentModule = int.Parse(Console.ReadLine());
+
+        TimeSpan remaining = modules
+            .Where(module => module.Key >= currentModule)
+            .Select(module => module.Value)
+            .Aggregate(TimeSpan.Zero, (total, time) => total + time);
+
+        Console.WriteLine($"Tid kvar: {remaining.Hours} timmar, {remaining.Minutes} minuter, {remaining.Seconds} sekunder");
+
+        DateTime now = DateTime.Now;
+        DateTime finishTime = now + remaining;
+
+        Console.WriteLine($"Nuvarande tid: {now:yyyy-MM-dd HH:mm:ss}");
+        Console.WriteLine($"Du blir klar: {finishTime:yyyy-MM-dd HH:mm:ss}");
+    }
+}

@@ -1,0 +1,48 @@
+
+//Input
+//There is no input for this problem.
+
+//Output
+//Output should contain one line, containing the string “Hello World!”.
+
+using System;
+namespace Helloworld
+{
+    class Program 
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello World!");
+        }
+    }
+}
+
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine(DateTime.Now);
+    }
+}
+
+/*
+
+Car = rad i tabell
+Brand = kolumn
+string = separat lagrad data
+assignment = ändra pekare till ny data
+
+*/
+
+class Car
+{
+    public string Brand { get; }
+
+    public Car(string brand)
+    {
+        Brand = brand;
+    }
+}
